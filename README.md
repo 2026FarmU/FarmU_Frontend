@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FarmU Client
 
-## Getting Started
+조합원 운영성과 통합 분석 · 출하 의사결정 · 작목 적합도 AI 플랫폼 **팜유**의 프론트엔드입니다.
 
-First, run the development server:
+---
+
+## 기술 스택
+
+| 분류 | 라이브러리 |
+|---|---|
+| 프레임워크 | Next.js 16 (App Router) |
+| 언어 | TypeScript 5 |
+| 스타일 | Tailwind CSS v4 |
+| UI 컴포넌트 | shadcn/ui |
+| 서버 상태 | TanStack Query v5 |
+| 전역 상태 | Zustand |
+| HTTP 클라이언트 | Axios |
+| 폼 / 유효성 | React Hook Form + Zod |
+| 차트 | Recharts |
+| 지도 | React Leaflet |
+| 파일 업로드 | react-dropzone |
+| 알림 | Sonner |
+| 날짜 | date-fns |
+| 코드 품질 | ESLint + Prettier + Husky |
+
+---
+
+## 시작하기
 
 ```bash
+# 의존성 설치
+npm install
+
+# 개발 서버 실행
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# 프로덕션 빌드
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+개발 서버는 기본적으로 `http://localhost:3000` 에서 실행됩니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 환경 변수
 
-## Learn More
+`.env.example` 파일을 복사해 `.env.local` 을 생성합니다.
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+cp .env.example .env.local
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| 변수 | 설명 |
+|---|---|
+| `NEXT_PUBLIC_API_BASE_URL` | 백엔드 API 베이스 URL |
+| `NEXT_PUBLIC_APP_ENV` | 실행 환경 (`development` / `production`) |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 스크립트
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| 명령어 | 설명 |
+|---|---|
+| `npm run dev` | 개발 서버 실행 |
+| `npm run build` | 프로덕션 빌드 |
+| `npm run start` | 빌드 결과 실행 |
+| `npm run lint` | ESLint 검사 |
+
+---
+
+## API 연동
+
+백엔드 API 명세는 `https://api.farmu.kr` 기준으로 작성되어 있습니다.
+
+- 인증 방식: Bearer Token (JWT)
+- 공통 헤더: `Authorization`, `X-Union-Id`
+- 토큰 만료 시 `/api/v1/auth/refresh` 자동 재발급 처리 (`src/lib/api/instance.ts`)
+- 비동기 작업(리포트 생성 등)은 202 응답 후 폴링으로 상태 확인
+
+---
+
+## 사용자 권한
+
+| 역할 | 설명 |
+|---|---|
+| `UNION_ADMIN` | 조합 전체 관리 |
+| `MEMBER` | 개인 성과 · 출하 · 필지 조회 |
+| `CONSULTANT` | 다중 조합 접근 · 분석 |
