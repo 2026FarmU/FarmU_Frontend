@@ -2,6 +2,14 @@
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
 
+@font-face {
+  font-family: 'Pretendard Variable';
+  src: url('/fonts/pretendard/PretendardVariable.woff2') format('woff2');
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -123,8 +131,12 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family:
+      'Pretendard Variable', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   }
   html {
     @apply font-sans;
+    font-family:
+      'Pretendard Variable', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   }
 }
