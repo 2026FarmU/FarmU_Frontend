@@ -137,7 +137,10 @@ function ResultPanel({ result, title, accentColor }: { result: ScenarioSimulateR
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" vertical={false} />
                   <XAxis dataKey="period" tick={{ fontSize: 10, fill: '#8FA0AE' }} axisLine={false} tickLine={false} />
                   <YAxis tick={{ fontSize: 10, fill: '#8FA0AE' }} axisLine={false} tickLine={false} domain={[chartMin, chartMax]} width={28} />
-                  <Tooltip contentStyle={{ fontSize: 12, borderRadius: 8, border: '1px solid #e5e7e0' }} formatter={(v: number) => [`${v}점`, '성과율']} />
+                  <Tooltip
+                    contentStyle={{ fontSize: 12, borderRadius: 8, border: '1px solid #e5e7e0' }}
+                    formatter={(v) => [`${typeof v === 'number' ? v.toFixed(1) : v ?? '-'}점`, '성과율']}
+                  />
                   <ReferenceLine y={result.baseline.score} stroke="#C7D0D7" strokeDasharray="4 3" strokeOpacity={0.7} />
                   <Line type="monotone" dataKey="score" stroke={accentColor} strokeWidth={2.5}
                     dot={{ r: 3.5, fill: accentColor, stroke: 'white', strokeWidth: 1.5 }}

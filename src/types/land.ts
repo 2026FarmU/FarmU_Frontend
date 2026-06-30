@@ -43,8 +43,12 @@ export interface CropCandidate {
   factors?: { soil: number; climate: number; slope: number; sunlight: number };
   riskFactors?: Array<{ type: string; score?: number; level?: string; note?: string }>;
   expectedRevenuePerHa?: number;
+  marketPrice?: number;
+  estimatedYield?: number;
   reasons?: string[];
 }
+
+export type LandSuitabilityCandidate = CropCandidate;
 
 export interface LandSuitability {
   landId: string;

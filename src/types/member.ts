@@ -4,9 +4,14 @@ export interface MemberRankingItem {
   name: string;
   mainCrop: string;
   region: string;
-  totalScore: number;
+  score: number;
   group: 'TOP' | 'MID' | 'LOW';
-  scoreChange: number;
+  scoreDelta: number;
+  components: {
+    production: number;
+    shipping: number;
+    revenue: number;
+  };
 }
 
 export interface MemberRankingResponse {

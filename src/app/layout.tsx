@@ -1,15 +1,8 @@
 import type { Metadata } from 'next';
-import { Geist_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
 import { QueryProvider } from '@/components/shared/QueryProvider';
 import { Toaster } from '@/components/ui/sonner';
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-  preload: false,
-});
 
 const kblCourt = localFont({
   src: '../../public/fonts/KBL_court/KBLCourt_EB.otf',
@@ -35,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={`${geistMono.variable} ${kblCourt.variable}`} suppressHydrationWarning>
+    <html lang="ko" className={kblCourt.variable} suppressHydrationWarning>
       <head>
         <link
           rel="stylesheet"
