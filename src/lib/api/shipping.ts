@@ -14,4 +14,13 @@ export const shippingApi = {
 
   getAccuracy: (params: { unionId: string; from: string; to: string }) =>
     apiClient.get<{ data: ShippingAccuracyResponse }>('/shipping/accuracy', { params }),
+
+  registerLivestock: (body: {
+    livestockId: string;
+    currentWeight: number;
+    targetWeight: number;
+    baseRevenue: number;
+    memberId?: string;
+    observedAt?: string;
+  }) => apiClient.post<{ data: { livestockRecordId: string; recommendation: import('@/types/shipping').ShippingRecommendation } }>('/livestock', body),
 } as const;

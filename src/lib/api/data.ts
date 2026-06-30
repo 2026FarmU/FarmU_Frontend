@@ -1,33 +1,32 @@
 import { apiClient } from './instance';
-import type {
-  UploadUrlRequest,
-  UploadUrlResponse,
-  UploadValidationResponse,
-  UploadListResponse,
-} from '@/types/upload';
+
+export interface DataUploadItem {
+  uploadId: string;
+  filename: string;
+  contentType: string;
+  size: number;
+  status: 'VALIDATING' | 'VALIDATED' | 'APPLIED' | 'FAILED';
+  totalRows: number;
+  errorCount: number;
+  valid: boolean;
+  createdAt: string;
+}
 
 export const dataApi = {
-  getUploadUrl: (body: UploadUrlRequest) =>
-    apiClient.post<{ data: UploadUrlResponse }>('/data/uploads', body),
+  history: (params?: { page?: number; size?: number }) =>
+    apiClient.get<{ data: DataUploadItem[] }>('/data/uploads', { params }),
 
-  commit: (uploadId: string) => apiClient.post(`/data/uploads/${uploadId}/commit`),
-
-  getValidation: (uploadId: string) =>
-    apiClient.get<{ data: UploadValidationResponse }>(`/data/uploads/${uploadId}/validation`),
-
-  patchRow: (uploadId: string, row: number, body: { column: string; value: string }) =>
-    apiClient.patch(`/data/uploads/${uploadId}/rows/${row}`, body),
-
-  revalidate: (uploadId: string) => apiClient.post(`/data/uploads/${uploadId}/revalidate`),
+  directUpload: (file: File, dataType: string) => {
+    const form = new FormData();
+    form.append('file', file);
+    form.append('dataType', dataType);
+    return apiClient.post<{ data: DataUploadItem }>('/data/uploads', form, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+  },
 
   apply: (uploadId: string, body: { skipErrors: boolean; applyWarnings: boolean }) =>
-    apiClient.post(`/data/uploads/${uploadId}/apply`, body),
-
-  getList: (params: {
-    unionId?: string;
-    dataType?: string;
-    status?: string;
-    page?: number;
-    size?: number;
-  }) => apiClient.get<UploadListResponse>('/data/uploads', { params }),
+    apiClient.post<{ data: { uploadId: string; appliedAt: string } }>(`/data/uploads/${uploadId}/apply`, body),
+  aiDraft: (body: { dataType: string; period: string }) =>
+    apiClient.post<{ data: { uploadId: string; status: string; rows: unknown[] } }>('/data/ai-draft', body),
 } as const;

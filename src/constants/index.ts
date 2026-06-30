@@ -1,14 +1,15 @@
 // ─── 성과율 그룹 ─────────────────────────────────────────────────────────────
+// 명세 그룹 enum: TOP / MID / LOW
 export const MEMBER_GROUP_LABELS = {
   TOP: '상위',
-  MIDDLE: '중위',
-  NEEDS_IMPROVEMENT: '개선필요',
+  MID: '중위',
+  LOW: '개선필요',
 } as const;
 
 export const MEMBER_GROUP_COLORS = {
   TOP: 'text-green-600 bg-green-50',
-  MIDDLE: 'text-blue-600 bg-blue-50',
-  NEEDS_IMPROVEMENT: 'text-red-600 bg-red-50',
+  MID: 'text-blue-600 bg-blue-50',
+  LOW: 'text-red-600 bg-red-50',
 } as const;
 
 // ─── 위험 알림 ───────────────────────────────────────────────────────────────
@@ -35,12 +36,14 @@ export const SHIPPING_ACTION_LABELS = {
 
 // ─── 리포트 ─────────────────────────────────────────────────────────────────
 export const REPORT_TYPE_LABELS = {
-  UNION_MONTHLY: '조합 월간 리포트',
-  MEMBER_ACTION: '조합원 액션플랜',
+  MONTHLY: '조합 월간 리포트',
+  UNION: '조합 리포트',
+  MEMBER: '조합원 액션플랜',
 } as const;
 
 export const REPORT_STATUS_LABELS = {
   PROCESSING: '생성 중',
+  READY: '완료',
   COMPLETED: '완료',
   FAILED: '실패',
 } as const;

@@ -21,7 +21,7 @@
 | 파일 업로드 | react-dropzone |
 | 알림 | Sonner |
 | 날짜 | date-fns |
-| 코드 품질 | ESLint + Prettier + Husky |
+| 코드 품질 | ESLint + Prettier |
 
 ---
 
@@ -86,4 +86,17 @@ cp .env.example .env.local
 |---|---|
 | `UNION_ADMIN` | 조합 전체 관리 |
 | `MEMBER` | 개인 성과 · 출하 · 필지 조회 |
-| `CONSULTANT` | 다중 조합 접근 · 분석 |
+| `SUPER_ADMIN` | 시스템 전체 관리 (조합·계정·공지·로그) |
+
+---
+
+## 계정
+
+테스트용 고정 계정입니다. 로그인 시 조합 코드 · 아이디 · 비밀번호를 입력합니다.
+
+| 역할 | 이름 | 조합 코드 | 아이디 | 비밀번호 | 비고 |
+|---|---|---|---|---|---|
+| 시스템 관리자 | — | (없음) | `system_admin` | `FarmU2026!` | `/admin/login` 으로 로그인 |
+| 운영 책임자 | — | `DEMO` | `demo_admin` | `FarmU2026!` | — |
+| 조합원 | 김민수 | `DEMO` | `kim_minsoo` | `FarmU2026!` |(mem_demo01) |
+| 조합원 | 이서연 | `DEMO` | `lee_seoyeon` | `FarmU2026!` | (mem_demo02) |``

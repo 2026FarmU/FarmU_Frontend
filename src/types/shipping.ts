@@ -18,6 +18,9 @@ export interface ShippingRecommendation {
   expectedRevenue: { min: number; expected: number; max: number };
   riskFactors: RiskFactor[];
   rationale: string;
+  /** 결정 상태 (B-14). 백엔드 미제공 시 undefined → PENDING으로 간주 */
+  status?: 'PENDING' | 'ACCEPTED' | 'REJECTED';
+  decidedAt?: string | null;
 }
 
 export interface ShippingRecommendationsResponse {

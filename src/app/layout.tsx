@@ -1,22 +1,32 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
 import './globals.css';
 import { QueryProvider } from '@/components/shared/QueryProvider';
 import { Toaster } from '@/components/ui/sonner';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+  preload: false,
+});
+
+const kblCourt = localFont({
+  src: '../../public/fonts/KBL_court/KBLCourt_EB.otf',
+  variable: '--font-kbl-court',
+  display: 'swap',
+  weight: '800',
+  preload: false,
 });
 
 export const metadata: Metadata = {
-  title: '팜유 | 조합원 성과관리 플랫폼',
-  description: '조합원 운영성과 통합 분석·출하 의사결정·작목 적합도 AI 플랫폼',
+  title: '팜유 | 조합원 성과관리 AI 플랫폼',
+  description: '조합원 운영성과 통합 분석·출하 의사결정·경축 적합도 AI 플랫폼',
+  icons: {
+    icon: '/icon.png',
+    shortcut: '/icon.png',
+    apple: '/icon.png',
+  },
 };
 
 export default function RootLayout({
@@ -25,8 +35,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">
+    <html lang="ko" className={`${geistMono.variable} ${kblCourt.variable}`} suppressHydrationWarning>
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"
+        />
+      </head>
+      <body suppressHydrationWarning>
         <QueryProvider>
           {children}
           <Toaster richColors position="top-right" />

@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c ' *)",
+      "Bash(python3)",
+      "Bash(grep -rn RoleGuard __TRACKED_VAR__/src/app)",
+      "Bash(grep -rn '\\\\/livestock\\\\|\\\\/unions\\\\/members\\\\|\\\\/data\\\\/uploads\\\\|\\\\/data\\\\/' __TRACKED_VAR__/src/lib/api/)",
+      "Bash(grep -rn 'downloadUrl\\\\|download\\\\|DELETE\\\\|405\\\\|stub\\\\|스텁' '__TRACKED_VAR__/src/app/\\(app\\)/reports/page.tsx')",
+      "Bash(grep -rn 'membersApi\\\\.list\\\\b' __TRACKED_VAR__/src/)",
+      "Bash(python3 -c \"import os; dirs = os.listdir\\(os.path.expanduser\\('~/Documents/contest'\\)\\); [print\\(repr\\(d\\)\\) for d in dirs]\")",
+      "Bash(curl -s \"https://farmu.gbsw.hs.kr/api/v1/api-docs\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://farmu.gbsw.hs.kr/v3/api-docs\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://farmu.gbsw.hs.kr/api-docs\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://farmu.gbsw.hs.kr/swagger\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" -X DELETE \"https://farmu.gbsw.hs.kr/api/v1/mentoring/matches/test-id\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" -X PATCH \"https://farmu.gbsw.hs.kr/api/v1/mentoring/matches/test-id/cancel\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" -X POST \"https://farmu.gbsw.hs.kr/api/v1/mentoring/matches/test-id/cancel\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" -X PATCH \"https://farmu.gbsw.hs.kr/api/v1/mentoring/matches/test-id/reject\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" -X PATCH \"https://farmu.gbsw.hs.kr/api/v1/mentoring/matches/test-id/approve\")"
+    ]
+  }
+}
